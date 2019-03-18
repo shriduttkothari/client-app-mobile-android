@@ -26,12 +26,15 @@ phases:
     commands:
       - sudo chmod +x ./gradlew
       - echo Build started on `date`
-      - ./gradlew --debug --stacktrace build test makeArtifactZip
+      - ./gradlew --debug --stacktrace build 
+	  - ./gradlew --debug --stacktrace copyApkDirForArchiving
+	  - ./gradlew --debug --stacktrace test 
+	  - ./gradlew --debug --stacktrace copyReportsDirForArchiving
+	  - ./gradlew --debug --stacktrace makeArtifactZip
   post_build:
     commands:
       - echo Build completed on `date`
 artifacts:
   files:
-    - app/build/**/*
-    #- app/build/archive/artifact_*.zip
+    - app/build/archive/*.zip
   discard-paths: yes
