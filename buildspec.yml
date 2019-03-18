@@ -19,6 +19,7 @@ phases:
       - yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses
       - /opt/android-sdk-linux/tools/android update sdk --no-ui
       - echo test cases execution start
+      - sudo chmod +x ./gradlew
       - ./gradlew test --stacktrace
       - echo test cases execution end
   build:
