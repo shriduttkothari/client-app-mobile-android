@@ -17,7 +17,7 @@ task copyReportsDirForArchiving(type: Copy) {
 }
 
 task copyApkDirForArchiving(type: Copy) {
-	copyApkDirForArchiving.dependsOn copyReportsDirForArchiving
+	//copyApkDirForArchiving.dependsOn copyReportsDirForArchiving
     from("$buildDir/outputs") {
         include "apk/**"
     }
@@ -25,7 +25,7 @@ task copyApkDirForArchiving(type: Copy) {
 }
 
 task makeArtifactZip(type: Zip) {
-   makeArtifactZip.dependsOn copyApkDirForArchiving
+   //makeArtifactZip.dependsOn copyApkDirForArchiving
    from("$buildDir/toArchive") {
         include "apk/**"
 		include "reports/**"
