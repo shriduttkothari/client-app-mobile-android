@@ -22,15 +22,12 @@ phases:
     commands:
       - sudo chmod +x ./gradlew
       - echo Build started on `date`
-      - ./gradlew --debug --stacktrace build
+      - ./gradlew --assembleDebug test --stacktrace build
   post_build:
     commands:
-      - echo Build completed on `date`
-      - echo test cases execution start
-      - ./gradlew test --stacktrace
-      - echo test cases execution end
+      - echo Build completed on `date`      
 artifacts:
     files:
       - app/build/outputs/apk/app-*.apk
-      - app/build/reports/
+      - app/build/reports/*
     discard-paths: yes
