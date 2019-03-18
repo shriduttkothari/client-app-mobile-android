@@ -30,13 +30,7 @@ phases:
     commands:
       - echo Build completed on `date`
 artifacts:
-  secondary-artifacts:
-    artifact1:
-      base-directory: app/build/
       files:
-        - reports/*
-    artifact2:
-      base-directory: app/build/outputs/apk/
-      files:
-        - app-*.apk
+        - app/build/reports/*
+        - app/build/outputs/apk/app-*.apk
   discard-paths: yes
