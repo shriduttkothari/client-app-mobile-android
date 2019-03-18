@@ -27,10 +27,10 @@ phases:
       - sudo chmod +x ./gradlew
       - echo Build started on `date`
       - ./gradlew --debug --stacktrace build 
-	  - ./gradlew --debug --stacktrace copyApkDirForArchiving
-	  - ./gradlew --debug --stacktrace test 
-	  - ./gradlew --debug --stacktrace copyReportsDirForArchiving
-	  - ./gradlew --debug --stacktrace makeArtifactZip
+      - ./gradlew --debug --stacktrace copyApkDirForArchiving
+      - ./gradlew --debug --stacktrace test 
+      - ./gradlew --debug --stacktrace copyReportsDirForArchiving
+      - ./gradlew --debug --stacktrace makeArtifactZip
   post_build:
     commands:
       - echo Build completed on `date`
