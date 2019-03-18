@@ -9,6 +9,32 @@ def getDateTime() {
 
 apply plugin: 'com.android.application'
 
+task copyReportsDirForArchiving(type: Copy) {
+    from("$buildDir") {
+        include "reports/**"
+    }
+    into "$buildDir/toArchive"
+}
+
+task copyApkDirForArchiving(type: Copy) {
+	copyApkDirForArchiving.dependsOn copyReportsDirForArchiving
+    from("$buildDir/outputs") {
+        include "apk/**"
+    }
+    into "$buildDir/toArchive"
+}
+
+task makeArtifactZip(type: Zip) {
+   makeArtifactZip.dependsOn copyApkDirForArchiving
+   from("$buildDir/toArchive") {
+        include "apk/**"
+		include "reports/**"
+    }
+   
+   archiveName 'artifact_' + getDateTime() + '.zip'
+   destinationDir(file('/build/archive'))
+}
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -50,4 +76,3 @@ dependencies {
 
     testImplementation 'junit:junit:4.12'
 }
-
