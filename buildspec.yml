@@ -18,16 +18,24 @@ phases:
       - echo -e "\nd975f751698a77b662f1254ddbeed3901e976f5a" > "$ANDROID_HOME/licenses/intel-android-extra-license"
       - yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses
       - /opt/android-sdk-linux/tools/android update sdk --no-ui
+      - echo test cases execution start
+      - sudo chmod +x ./gradlew
+      - ./gradlew test --stacktrace
+      - echo test cases execution end
   build:
     commands:
       - sudo chmod +x ./gradlew
       - echo Build started on `date`
       - ./gradlew --debug --stacktrace build test
+      - mkdir build-output
+      - cp -R app/build/reports/ build-output
+      - cp -R app/build/outputs/ build-output
   post_build:
     commands:
-      - echo Build completed on `date`      
+      - echo Build completed on `date`
+      - mv build-output/**/* ./
+      - mv build-output/* ./
 artifacts:
-    files:
-      - app/build/outputs/apk/app-*.apk
-      - app/build/reports/*
-    discard-paths: yes
+  files:
+    - '**/*'
+  discard-paths: yes
