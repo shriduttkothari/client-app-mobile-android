@@ -32,9 +32,9 @@ phases:
 artifacts:
   secondary-artifacts:
     artifact1:
-      base-directory: app/build/reports/
+      base-directory: app/build/
       files:
-        - *
+        - reports/*
     artifact2:
       base-directory: app/build/outputs/apk/
       files:
