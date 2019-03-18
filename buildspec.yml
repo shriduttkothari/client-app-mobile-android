@@ -18,13 +18,12 @@ phases:
       - echo -e "\nd975f751698a77b662f1254ddbeed3901e976f5a" > "$ANDROID_HOME/licenses/intel-android-extra-license"
       - yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses
       - /opt/android-sdk-linux/tools/android update sdk --no-ui
-      - echo test cases execution start
-      - sudo chmod +x ./gradlew
-      - ./gradlew test --stacktrace
-      - echo test cases execution end
   build:
     commands:
       - sudo chmod +x ./gradlew
+      - echo test cases execution start
+      - ./gradlew test --stacktrace
+      - echo test cases execution end
       - echo Build started on `date`
       - ./gradlew --debug --stacktrace build
   post_build:
