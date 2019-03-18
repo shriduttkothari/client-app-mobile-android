@@ -32,5 +32,5 @@ phases:
       - echo Build completed on `date`
 artifacts:
   files:
-    - 'app/build/archive/*'
+    - app/build/archive/artifact_*.zip
   discard-paths: yes
