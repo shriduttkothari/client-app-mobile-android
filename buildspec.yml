@@ -30,7 +30,7 @@ phases:
     commands:
       - echo Build completed on `date`
 artifacts:
-      files:
-        - app/build/reports/*
-        - app/build/outputs/apk/app-*.apk
+    files:
+      - app/build/reports/*
+      - app/build/outputs/apk/app-*.apk
   discard-paths: yes
