@@ -1,0 +1,53 @@
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+
+def getDateTime() {
+    DateFormat df = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
+	df.setTimeZone(TimeZone.getTimeZone("IST"))
+    return df.format(new Date());
+}
+
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "io.clientapp.mobile.android"
+        minSdkVersion 16
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+		
+		android.applicationVariants.all { variant ->
+			variant.outputs.all {
+				outputFileName = "app-${variant.name}-${variant.versionName}-" + getDateTime() +".apk"
+			}
+		}
+    }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.volley:volley:1.1.1'
+    //https://developers.google.com/android/guides/setup
+    implementation 'com.google.android.gms:play-services-auth:16.0.1'
+    // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.0.1'
+
+    testImplementation 'junit:junit:4.12'
+}
+
