@@ -28,11 +28,22 @@ task makeArtifactZip(type: Zip) {
    //makeArtifactZip.dependsOn copyApkDirForArchiving
    from("$buildDir/toArchive") {
         include "apk/**"
-		include "reports/**"
+	include "reports/**"
     }
    
    archiveName 'artifact_' + getDateTime() + '.zip'
    destinationDir(file('/build/archive'))
+}
+
+task makeArtifactZipV2(type: Zip) {
+   //makeArtifactZip.dependsOn copyApkDirForArchiving
+   from("toArchive") {
+        include "apk/**"
+	include "reports/**"
+    }
+   
+   archiveName 'artifact_' + getDateTime() + '.zip'
+   destinationDir(file('/archive'))
 }
 
 android {
