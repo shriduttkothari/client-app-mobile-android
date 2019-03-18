@@ -22,7 +22,7 @@ phases:
     commands:
       - sudo chmod +x ./gradlew
       - echo Build started on `date`
-      - ./gradlew --assembleDebug test --stacktrace build
+      - ./gradlew --debug stacktrace build test
   post_build:
     commands:
       - echo Build completed on `date`      
