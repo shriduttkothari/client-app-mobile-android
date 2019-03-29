@@ -7,47 +7,32 @@ phases:
   pre_build:
     commands:
       - echo Pre Build started on `date`
-      - sudo su
-      - mkdir -p app/build/reports/
-      - mkdir -p app/build/outputs/apk/
-      - cd app/build/reports/
-      - touch passbook.txt
-      - cd ../../../
-      # - wget http://dl.google.com/android/android-sdk_r24.4.1-linux.tgz
-      # - tar -xvf android-sdk_r24.4.1-linux.tgz
-      # - sudo mv android-sdk-linux /opt/
-      # - sudo chmod -R 777 /opt/
-      # - export ANDROID_HOME=/opt/android-sdk-linux
-      # - export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
-      # - echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_HOME/licenses/android-sdk-license"
-      # - echo -e "\n84831b9409646a918e30573bab4c9c91346d8abd" > "$ANDROID_HOME/licenses/android-sdk-preview-license"
-      # - echo -e "\nd975f751698a77b662f1254ddbeed3901e976f5a" > "$ANDROID_HOME/licenses/intel-android-extra-license"
-      # - yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses
-      # - /opt/android-sdk-linux/tools/android update sdk --no-ui
-      # - echo test cases execution start
-      # - sudo chmod +x ./gradlew
-      # - ./gradlew test --stacktrace
-      # - echo test cases execution end
+      - wget http://dl.google.com/android/android-sdk_r24.4.1-linux.tgz
+      - tar -xvf android-sdk_r24.4.1-linux.tgz
+      - sudo mv android-sdk-linux /opt/
+      - sudo chmod -R 777 /opt/
+      - export ANDROID_HOME=/opt/android-sdk-linux
+      - export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+      - echo -e "\n8933bad161af4178b1185d1a37fbf41ea5269c55" > "$ANDROID_HOME/licenses/android-sdk-license"
+      - echo -e "\n84831b9409646a918e30573bab4c9c91346d8abd" > "$ANDROID_HOME/licenses/android-sdk-preview-license"
+      - echo -e "\nd975f751698a77b662f1254ddbeed3901e976f5a" > "$ANDROID_HOME/licenses/intel-android-extra-license"
+      - yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses
+      - /opt/android-sdk-linux/tools/android update sdk --no-ui
+      - echo test cases execution start
+      - sudo chmod +x ./gradlew
+      - ./gradlew test --stacktrace
+      - echo test cases execution end
   build:
     commands:
-      # - sudo chmod +x ./gradlew
-      # - echo Build started on `date`
-      # - ./gradlew build 
-      - sudo su
-      - ROOT_DIR_FOR_ARTIFACT=$(date +"%Y-%m-%d_%H:%M:%S:%3N")
-      - mkdir -p app/"$ROOT_DIR_FOR_ARTIFACT"
-      - cd app/"$ROOT_DIR_FOR_ARTIFACT"
-      - pwd
-      - mkdir reports
-      - cp -a ../../app/build/reports/. reports/
-      - mkdir apk
-      - cp -a ../../app/build/outputs/apk/. apk/
-      - cd ../../
+      - sudo chmod +x ./gradlew
+      - echo Build started on `date`
+      - ./gradlew build 
   post_build:
     commands:
       - echo Build completed on `date`
 artifacts:
+  type: zip
   files:
-    - $ROOT_DIR_FOR_ARTIFACT/reports/**/* 
-    - $ROOT_DIR_FOR_ARTIFACT/apk/**/* 
+    - app/build/reports/**/* 
+    - app/build/outputs/apk**/* 
   discard-paths: no
