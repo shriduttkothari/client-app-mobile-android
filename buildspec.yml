@@ -27,11 +27,19 @@ phases:
       - sudo chmod +x ./gradlew
       - echo Build started on `date`
       - ./gradlew build 
+      - ROOT_DIR_FOR_ARTIFACT=$(date +"%Y-%m-%d %H:%M:%S,%3N")
+      - sudo mkdir $ROOT_DIR_FOR_ARTIFACT
+      - cd $(ROOT_DIR_FOR_ARTIFACT)
+      - sudo mkdir reports
+      - cp -a ../app/build/reports/. reports/
+      - sudo mkdir apk
+      - cp -a ../app/build/outputs/apk/. apk/
+      - cd ..
   post_build:
     commands:
       - echo Build completed on `date`
 artifacts:
   files:
-    - app/build/reports/**/* 
-    - app/build/outputs/apk**/* 
+    - $ROOT_DIR_FOR_ARTIFACT/reports/**/* 
+    - $ROOT_DIR_FOR_ARTIFACT/apk/**/* 
   discard-paths: no
