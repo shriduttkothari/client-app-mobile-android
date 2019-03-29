@@ -40,6 +40,6 @@ phases:
       - echo Build completed on `date`
 artifacts:
   files:
-    - "$ROOT_DIR_FOR_ARTIFACT"/reports/**/* 
-    - "$ROOT_DIR_FOR_ARTIFACT"/apk/**/* 
+    - $ROOT_DIR_FOR_ARTIFACT/reports/**/* 
+    - $ROOT_DIR_FOR_ARTIFACT/apk/**/* 
   discard-paths: no
