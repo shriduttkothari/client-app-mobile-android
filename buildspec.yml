@@ -34,4 +34,4 @@ artifacts:
   files:
     - app/build/reports/**/* 
     - app/build/outputs/apk**/* 
-  discard-paths: yes
+  discard-paths: no
