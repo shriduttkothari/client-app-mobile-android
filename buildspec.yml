@@ -37,6 +37,7 @@ phases:
       - ROOT_DIR_FOR_ARTIFACT=$(date +"%Y-%m-%d_%H:%M:%S:%3N")
       - mkdir -p app/"$ROOT_DIR_FOR_ARTIFACT"
       - cd app/"$ROOT_DIR_FOR_ARTIFACT"
+      - pwd
       - mkdir reports
       - cp -a ../../app/build/reports/. reports/
       - mkdir apk
