@@ -35,13 +35,13 @@ phases:
       # - ./gradlew build 
       - sudo su
       - ROOT_DIR_FOR_ARTIFACT=$(date +"%Y-%m-%d_%H:%M:%S:%3N")
-      - mkdir -p "$ROOT_DIR_FOR_ARTIFACT"
-      - cd "$ROOT_DIR_FOR_ARTIFACT"
+      - mkdir -p app/"$ROOT_DIR_FOR_ARTIFACT"
+      - cd app/"$ROOT_DIR_FOR_ARTIFACT"
       - mkdir reports
-      - cp -a ../app/build/reports/. reports/
+      - cp -a ../../app/build/reports/. reports/
       - mkdir apk
-      - cp -a ../app/build/outputs/apk/. apk/
-      - cd ..
+      - cp -a ../../app/build/outputs/apk/. apk/
+      - cd ../../
   post_build:
     commands:
       - echo Build completed on `date`
