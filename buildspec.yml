@@ -7,8 +7,9 @@ phases:
   pre_build:
     commands:
       - echo Pre Build started on `date`
-      - sudo mkdir -p app/build/reports/
-      - sudo mkdir -p app/build/outputs/apk/
+      - sudo su
+      - mkdir -p app/build/reports/
+      - mkdir -p app/build/outputs/apk/
       - cd app/build/reports/
       - touch passbook.txt
       - cd ../../../
@@ -32,12 +33,13 @@ phases:
       # - sudo chmod +x ./gradlew
       # - echo Build started on `date`
       # - ./gradlew build 
+      - sudo su
       - ROOT_DIR_FOR_ARTIFACT=$(date +"%Y-%m-%d_%H:%M:%S:%3N")
-      - sudo mkdir -p "$ROOT_DIR_FOR_ARTIFACT"
+      - mkdir -p "$ROOT_DIR_FOR_ARTIFACT"
       - cd "$ROOT_DIR_FOR_ARTIFACT"
-      - sudo mkdir reports
+      - mkdir reports
       - cp -a ../app/build/reports/. reports/
-      - sudo mkdir apk
+      - mkdir apk
       - cp -a ../app/build/outputs/apk/. apk/
       - cd ..
   post_build:
