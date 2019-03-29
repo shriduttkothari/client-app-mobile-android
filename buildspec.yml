@@ -27,16 +27,11 @@ phases:
       - sudo chmod +x ./gradlew
       - echo Build started on `date`
       - ./gradlew --debug --stacktrace build 
-      - mkdir app/toArchive
-      - cp -R app/build/outputs/apk/ app/toArchive
-      - ./gradlew --debug --stacktrace test 
-      - cp -R app/build/reports/ app/toArchive
-      - mkdir archive
-      - ./gradlew --debug --stacktrace makeArtifactZipV2
   post_build:
     commands:
       - echo Build completed on `date`
 artifacts:
   files:
-    - app/archive/artifact_*.zip
+    - app/build/reports
+    - app/build/outputs/apk
   discard-paths: yes
